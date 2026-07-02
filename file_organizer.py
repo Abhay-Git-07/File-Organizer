@@ -150,6 +150,28 @@ def reset_organized_files():
     for value in organized_files.values():
         value.clear()
 
+def details():
+    # Display the categorized files
+    for key,value in organized_files.items():
+        if value:
+            print(key)
+            print("-" * 10)
+            for files in value:
+                print(files)
+            print("-" * 10)
+                
+        else:
+            continue
+
+    print("✔ Organization completed successfully!")
+
+    list_of_files = os.listdir()
+
+    # Display the folders created during organization
+    print("Folders created :")
+    for data in list_of_files:
+        print(f"- {data}")
+
 # Main function of the program
 def main():
     while True:
@@ -175,7 +197,8 @@ def main():
             case 1 :
                 existing_folder()
                 fetch_files()
-                organize_files()             
+                organize_files()  
+                details()           
                 
             case 2 :
                 created_folder = create_folder()
@@ -183,7 +206,8 @@ def main():
                 print("Working directory : ",os.getcwd())
                 fetch_files()
                 organize_files()
-                
+                details()
+
             case 3 :
                 print("Thanks for using file organiser..")
                 break
@@ -191,7 +215,7 @@ def main():
             case _:
                 print("Choose a valid option(1,2 or 3)")        
                 continue
-        
+                
         # Ask whether the user wants to organize another folder
         try:
             confirmation = input("Do you want to organise another folder?(y/n) ")
@@ -208,24 +232,3 @@ def main():
 # Start the program
 if __name__ == "__main__":
     main()
-
-# Display the categorized files
-for key,value in organized_files.items():
-    if value:
-        print(key)
-        print("-" * 10)
-        for files in value:
-            print(files)
-        print("-" * 10)
-            
-    else:
-        continue
-
-print("✔ Organization completed successfully!")
-
-list_of_files = os.listdir()
-
-# Display the folders created during organization
-print("Folders created :")
-for data in list_of_files:
-    print(f"- {data}")
